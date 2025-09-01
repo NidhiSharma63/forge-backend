@@ -5,8 +5,10 @@ import errorHandle from "./middleware/errorHandle.js";
 import router from "./routes/routes.js";
 import connectDB from "./utils/connectDB.js";
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+// increase body-parser limit
+app.use(express.json({ limit: "10mb" }));   // 10 MB max JSON
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // Middleware to parse incoming requests with JSON payloads
 
